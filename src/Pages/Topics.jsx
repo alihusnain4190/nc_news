@@ -17,8 +17,10 @@ class Topics extends Component {
     }
     render() {
         const { topics } = this.state.topics;
-        if(this.state.isLoading)return <Loader></Loader>
+        if(this.state.isLoading)return <Loader/>
         return (
+            <section className="topics">
+                <h1>Information about topics</h1>
             <table>
                 <thead>
                     <tr>
@@ -38,7 +40,9 @@ class Topics extends Component {
                         </td></tr>
                 })}
                 </tbody>   
-            </table>
+                </table>
+                </section>
+
                
         );
     }

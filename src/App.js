@@ -17,8 +17,7 @@ function App() {
         <Topics path="/topics"></Topics>
         <Articles path="/articles"></Articles>
         <Comments path="/comments"></Comments>
-  
-      </Router>
+       </Router>
       <Footer></Footer>
     </div>
   );
