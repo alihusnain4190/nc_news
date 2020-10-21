@@ -20,7 +20,7 @@ function App() {
         <Topics path="/topics"></Topics>
         <Articles path="/articles/*"></Articles>
         <Comments path="/comments"></Comments>
-        <ErrorDisplay default status={400} messege="page does not exist"></ErrorDisplay>
+        {/* <ErrorDisplay default status={400} messege="page does not exist"></ErrorDisplay> */}
        </Router>
       <Footer></Footer>
     </div>

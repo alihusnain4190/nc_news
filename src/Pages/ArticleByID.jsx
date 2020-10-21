@@ -4,12 +4,29 @@ import { Link, navigate, Router } from "@reach/router";
 import { getArticleByID } from "../api/api";
 import CommentByArticle from "../Components/CommentByArticle";
 import ErrorDisplay from "../Components/ErrorDisplay";
+import Votes from "../Components/Votes";
 class ArticleByID extends Component {
   state = {
     article: {},
     isLoading: true,
     error: null,
   };
+  changeUpdataVote=(article_id, voteChange)=> {
+    let { votes,...article } = this.state.article.article;
+    votes = votes + voteChange;
+    article.votes = votes;
+    article.article_id = article_id;
+    this.state.article.article = article;
+  
+    this.setState((prevState) => {
+      console.log(prevState);
+      return {
+
+      }
+    });
+    
+  }
+
   componentDidMount() {
     getArticleByID(this.props.article_id)
       .then(({ data: article }) => {
@@ -52,7 +69,7 @@ class ArticleByID extends Component {
       );
 
     if (this.state.isLoading) return <h1>Loadin</h1>;
-    const {
+    let {
       article_id,
       title,
       topic,
@@ -63,17 +80,19 @@ class ArticleByID extends Component {
       created_at,
     } = this.state.article.article;
     return (
+
       <div>
         <h1>title: {title}</h1>
         <h3>topic: {topic}</h3>
         <h3>author: {author}</h3>
         <p>{body}</p>
         <p>votes:{votes}</p>
-        <p>👍</p>
 
-        <p>👎</p>
+        {/*         <p>👍</p>
+
+        <p>👎</p> */}
         <p>time: {created_at}</p>
-        <CommentByArticle article_id={article_id}></CommentByArticle>
+        <Votes votes={votes}article_id={article_id} changeUpdataVote={this.changeUpdataVote}></Votes>
       </div>
     );
   }
