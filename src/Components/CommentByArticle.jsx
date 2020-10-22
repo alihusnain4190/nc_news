@@ -13,7 +13,7 @@ class CommentByArticle extends Component {
   }
   render() {
     const { comment_id, body } = this.state.comments;
-    console.log(body);
+   
     if (this.state.isLoading) return <h1>Loading</h1>;
     return (
       <div>

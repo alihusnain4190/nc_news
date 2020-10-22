@@ -5,7 +5,7 @@ const DisplayAllArticles = ({articles}) => {
     
     return (
         articles.map(({ article_id, title, topic, author, body, votes, comment_count, created_at }) => {
-            console.log(votes);
+          
             return <div className="article" key={article_id}>
                 <h1>title: {title}</h1>
                 <h3>topic: {topic}</h3>

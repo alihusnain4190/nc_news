@@ -87,12 +87,9 @@ class ArticleByID extends Component {
         <h3>author: {author}</h3>
         <p>{body}</p>
         <p>votes:{votes}</p>
-
-        {/*         <p>👍</p>
-
-        <p>👎</p> */}
         <p>time: {created_at}</p>
         <Votes votes={votes}article_id={article_id} changeUpdataVote={this.changeUpdataVote}></Votes>
+     <CommentByArticle article_id={article_id}></CommentByArticle>
       </div>
     );
   }
