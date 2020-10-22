@@ -1,16 +1,15 @@
 import React from "react";
 import axios from "axios";
-const Votes = ({article_id,votes,changeUpdataVote}) => {
+const CommentVotes = (props) => {
     
     const handleVote = (voteChange) => {
-        changeUpdataVote(article_id,voteChange)
-
-    axios
-        .patch(`https://husnain4190news.herokuapp.com/api/articles/${article_id}`,{
+        props.changeUpdataVote(props.comment_id,voteChange)
+        axios
+        .patch(`https://husnain4190news.herokuapp.com/api/comments/${props.comment_id}`,{
             inc_votes: parseInt(voteChange),
         }).catch(err => {
-            changeUpdataVote(article_id,-voteChange)
-        });
+            props.changeUpdataVote(props.comment_id,-voteChange)
+        })
     };
   
   return (
@@ -21,4 +20,4 @@ const Votes = ({article_id,votes,changeUpdataVote}) => {
   );
 };
 
-export default Votes;
+export default CommentVotes;

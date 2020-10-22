@@ -7,7 +7,7 @@ const Navbar = () => {
             <li><Link to="/topics"><button>Topics</button></Link></li>
 
             <li><Link to="/articles"><button>Articles</button></Link></li>
-            <li><Link to="/comments"><button>Comments</button></Link></li>
+            <li><Link to="/users"><button>users</button></Link></li>
         </ul>
     );
 };

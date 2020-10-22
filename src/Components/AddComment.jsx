@@ -9,6 +9,7 @@ class AddComment extends Component {
     this.setState({ comment: value });
   };
   render() {
+    console.log(this.state.comment)
     return (
       <section>
         <form
@@ -19,6 +20,7 @@ class AddComment extends Component {
               this.state.comment,
               this.props.author
             ).then(({ data: comment }) => {
+             
               this.props.upDateComment(comment.comment);
             })
           }}

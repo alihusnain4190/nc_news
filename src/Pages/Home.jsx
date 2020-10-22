@@ -15,9 +15,9 @@ const Home = () => {
                                 <p>Information about student articles</p>
                   <Link to="/articles"><button>articles</button> </Link>  
                 </div>
-                <div className="comments">  <h1>comments</h1>
+                <div className="comments">  <h1>users</h1>
                     <p>Information about student comments</p>
-                    <Link to="/comments"><button>comments</button> </Link>
+                    <Link to="/users"><button>users</button> </Link>
                 </div>
            
             </section>
