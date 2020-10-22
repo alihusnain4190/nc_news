@@ -5,32 +5,32 @@ import { getArticleByID } from "../api/api";
 import CommentByArticle from "../Components/CommentByArticle";
 import ErrorDisplay from "../Components/ErrorDisplay";
 import Votes from "../Components/Votes";
+import ToggleComment from "../Components/ToggleComment";
+import Loader from "../Components/Loader";
 class ArticleByID extends Component {
   state = {
     article: {},
     isLoading: true,
     error: null,
   };
-  changeUpdataVote=(article_id, voteChange)=> {
-    let { votes,...article } = this.state.article.article;
-    votes = votes + voteChange;
-    article.votes = votes;
-    article.article_id = article_id;
-    this.state.article.article = article;
-  
-    this.setState((prevState) => {
-      console.log(prevState);
-      return {
+  changeUpdataVote = (article_id, voteChange) => {
+    let { votes, ...article } = this.state.article;
+    // votes = votes + voteChange;
+    let obj = {};
+    obj = { ...article };
+    obj.votes = votes + voteChange;
 
-      }
+    this.setState((prevState) => {
+      return {
+        article: obj,
+      };
     });
-    
-  }
+  };
 
   componentDidMount() {
     getArticleByID(this.props.article_id)
       .then(({ data: article }) => {
-        this.setState({ article: article, isLoading: false });
+        this.setState({ article: article.article, isLoading: false });
       })
       .catch(({ response }) => {
         this.setState({
@@ -46,13 +46,13 @@ class ArticleByID extends Component {
     if (prevProps.article_id !== this.props.article_id) {
       getArticleByID(this.props.article_id)
         .then(({ data: article }) => {
-          this.setState({ article: article, isLoading: false });
+          this.setState({ article: article.article, isLoading: false });
         })
         .catch(({ response }) => {
           this.setState({
             error: {
-              status: response.status,
-              messege: response.data.msg,
+              // status: response.status,
+              // messege: response.data.msg,
             },
             isLoading: false,
           });
@@ -68,7 +68,7 @@ class ArticleByID extends Component {
         ></ErrorDisplay>
       );
 
-    if (this.state.isLoading) return <h1>Loadin</h1>;
+    if (this.state.isLoading) return <Loader></Loader>;
     let {
       article_id,
       title,
@@ -78,9 +78,8 @@ class ArticleByID extends Component {
       votes,
       comment_count,
       created_at,
-    } = this.state.article.article;
+    } = this.state.article;
     return (
-
       <div>
         <h1>title: {title}</h1>
         <h3>topic: {topic}</h3>
@@ -88,8 +87,18 @@ class ArticleByID extends Component {
         <p>{body}</p>
         <p>votes:{votes}</p>
         <p>time: {created_at}</p>
-        <Votes votes={votes}article_id={article_id} changeUpdataVote={this.changeUpdataVote}></Votes>
-     <CommentByArticle article_id={article_id}></CommentByArticle>
+        <Votes
+          votes={votes}
+          article_id={article_id}
+          changeUpdataVote={this.changeUpdataVote}
+        ></Votes>
+        <ToggleComment>
+          <CommentByArticle
+            author={author}
+            article_id={article_id}
+            path="articles/:article_id"
+          ></CommentByArticle>
+        </ToggleComment>
       </div>
     );
   }

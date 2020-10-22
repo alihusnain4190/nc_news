@@ -1,10 +1,14 @@
 import axios from 'axios';
+
+const instance = axios.create(
+    {baseURL:'https://husnain4190news.herokuapp.com/api'})
+
 export const getTopics = () => {
-    return axios.get('https://husnain4190news.herokuapp.com/api/topics');
+    return instance.get(`/topics`);
 }
 export const getArticles = ( value) => {
   
-        return axios.get('https://husnain4190news.herokuapp.com/api/articles', {
+        return instance.get('/articles', {
             params:
                 {sort_by: value }
         });   
@@ -12,10 +16,19 @@ export const getArticles = ( value) => {
 
 export const getArticleByID = (article_id) => {
    
-    return axios.get(`https://husnain4190news.herokuapp.com/api/articles/${article_id}`);
+    return instance.get(`/articles/${article_id}`);
        
 }
 export const getCommentByArticleID = (article_id) => {
     
-    return axios.get(`https://husnain4190news.herokuapp.com/api/articles/${article_id}/comments`);
+    return instance.get(`/articles/${article_id}/comments`);
+}
+export const addCommentByArticleID=(article_id,comment,author) => {
+   return instance.get(`/articles/${article_id}/comments`,
+                {
+                  body:comment,
+                  username: author,
+                }
+              )
+             
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 const Votes = ({article_id,votes,changeUpdataVote}) => {
-    console.log(votes +'first')
+    
     const handleVote = (voteChange) => {
         changeUpdataVote(article_id,voteChange)
 
