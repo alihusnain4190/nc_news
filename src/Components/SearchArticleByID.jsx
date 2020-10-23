@@ -11,9 +11,10 @@ class SearchArticleByID extends Component {
     }
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.handleSearch(this.state.article_id);
+        this.props.handleSearch(this.state.article_id,this.props.admin);
     }
     render() {
+        // console.log(this.props.admin)
         return (
             <div>
             <form onSubmit={this.handleSubmit}>

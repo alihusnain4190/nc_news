@@ -9,6 +9,7 @@ import ToggleComment from "../Components/ToggleComment";
 import Loader from "../Components/Loader";
 class ArticleByID extends Component {
   state = {
+    admin: '',
     article: {},
     isLoading: true,
     error: null,
@@ -28,6 +29,7 @@ class ArticleByID extends Component {
   };
 
   componentDidMount() {
+    this.setState({admin:this.props.location.state.admin})
     getArticleByID(this.props.article_id)
       .then(({ data: article }) => {
         this.setState({ article: article.article, isLoading: false });
@@ -43,6 +45,7 @@ class ArticleByID extends Component {
       });
   }
   componentDidUpdate(prevProps, prevState) {
+    // this.setState({admin:this.props.location.state.admin})
     if (prevProps.article_id !== this.props.article_id) {
       getArticleByID(this.props.article_id)
         .then(({ data: article }) => {
@@ -51,8 +54,8 @@ class ArticleByID extends Component {
         .catch(({ response }) => {
           this.setState({
             error: {
-              // status: response.status,
-              // messege: response.data.msg,
+              status: response.status,
+              messege: response.data.msg,
             },
             isLoading: false,
           });
@@ -60,6 +63,9 @@ class ArticleByID extends Component {
     }
   }
   render() {
+
+
+    console.log(this.props.location.state.admin)
     if (this.state.error)
       return (
         <ErrorDisplay
@@ -87,11 +93,11 @@ class ArticleByID extends Component {
         <p>{body}</p>
         <p>votes:{votes}</p>
         <p>time: {created_at}</p>
-        <Votes
+        {this.state.admin === 'jessjelly' ? <Votes
           votes={votes}
           article_id={article_id}
           changeUpdataVote={this.changeUpdataVote}
-        ></Votes>
+        ></Votes> :null}
         <ToggleComment>
           <CommentByArticle
             author={author}

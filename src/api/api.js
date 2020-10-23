@@ -3,8 +3,9 @@ import axios from 'axios';
 const instance = axios.create(
     {baseURL:'https://husnain4190news.herokuapp.com/api'})
 
-export const getTopics = () => {
-    return instance.get(`/topics`);
+export const getTopics = async() => {
+    const topics = await instance.get(`/topics`);
+    return topics.data.topics;
 }
 export const getArticles = ( value,page) => {
     

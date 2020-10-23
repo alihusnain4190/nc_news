@@ -8,6 +8,7 @@ class CommentByArticle extends Component {
   state = {
     comments: [],
     isLoading: true,
+    admin:'jessjelly'
   };
   componentDidMount() {
     getCommentByArticleID(this.props.article_id).then(({ data: comment }) => {
@@ -64,12 +65,15 @@ class CommentByArticle extends Component {
             <div key={comment_id}>
               {body}
               <p>votes: {votes}</p>
-              <CommentVotes
-                changeUpdataVote={this.changeUpdataVote}
-                comment_id={comment_id}
-              ></CommentVotes>
+              {this.state.admin === 'jessjelly' ?
+                <CommentVotes
+                  changeUpdataVote={this.changeUpdataVote}
+                  comment_id={comment_id}
+                ></CommentVotes>:null}
+        {this.state.admin === 'jessjelly' ?
               <DeleteComment showCommentAfterDelete={this.showCommentAfterDelete} comment_id={comment_id}></DeleteComment>
-        
+       
+              :null}
             </div>
           );
         })}

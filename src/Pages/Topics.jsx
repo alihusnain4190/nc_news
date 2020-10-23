@@ -4,17 +4,19 @@ import { getTopics } from '../api/api';
 import Loader from '../Components/Loader'
 class Topics extends Component {
     state={
-    topics:{},
+    topics:[],
     isLoading: true
     }
-    componentDidMount() {
-    getTopics()
-         .then(({ data: topics }) => {
-                this.setState({topics:topics,isLoading:false})
-            }).catch(err => {
-                console.log(err)
-            })
-    }
+ async   componentDidMount() {
+        try {
+            const topics = await getTopics()
+            console.log(topics);
+                    this.setState({topics:{topics},isLoading:false})
+            }
+        catch (err) {
+            console.log(err)
+             }   
+                }
     render() {
         const { topics } = this.state.topics;
         if(this.state.isLoading)return <Loader/>

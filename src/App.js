@@ -21,7 +21,7 @@ function App() {
         <Articles path="/articles/"></Articles>
         <ArticleByID path="/articles/:article_id"/>
           <GetAllUser path="/users"></GetAllUser>
-        {/* <ErrorDisplay default status={400} messege="page does not exist"></ErrorDisplay> */}
+        <ErrorDisplay default status={400} messege="page does not exist"></ErrorDisplay>
        </Router>
       <Footer></Footer>
     </div>
