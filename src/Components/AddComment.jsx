@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { addCommentByArticleID } from "../api/api";
 class AddComment extends Component {
   state = { comment: "" };

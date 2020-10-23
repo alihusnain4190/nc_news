@@ -8,9 +8,11 @@ class CommentByArticle extends Component {
   state = {
     comments: [],
     isLoading: true,
-    admin:'jessjelly'
+    admin:''
   };
   componentDidMount() {
+    this.setState({admin:this.props.admin})
+
     getCommentByArticleID(this.props.article_id).then(({ data: comment }) => {
       this.setState({ comments: comment.comments, isLoading: false });
     });
@@ -57,7 +59,7 @@ class CommentByArticle extends Component {
   }
   render() {
     if (this.state.isLoading) return <Loader></Loader>;
-
+console.log(this.props.admin)
     return (
       <div>
         {this.state.comments.map(({ comment_id, body, votes }) => {

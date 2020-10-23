@@ -14,8 +14,8 @@ const CommentVotes = (props) => {
   
   return (
     <div>
-      <button onClick={() => handleVote(1)} value="1">👍</button>
-      <button onClick={() => handleVote(-1)} value="-1">👎</button>
+      <button onClick={() => handleVote(1)} value="1"><span role="img" aria-label="thumbsup" >👍</span></button>
+      <button onClick={() => handleVote(-1)} value="-1"><span role="img" aria-label="thumbsdown" >👎</span></button>
     </div>
   );
 };

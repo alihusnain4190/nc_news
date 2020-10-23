@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import { Link, navigate, Router } from "@reach/router";
-
 import { getArticleByID } from "../api/api";
 import CommentByArticle from "../Components/CommentByArticle";
 import ErrorDisplay from "../Components/ErrorDisplay";
@@ -9,10 +7,10 @@ import ToggleComment from "../Components/ToggleComment";
 import Loader from "../Components/Loader";
 class ArticleByID extends Component {
   state = {
-    admin: '',
     article: {},
     isLoading: true,
     error: null,
+    admin:''
   };
   changeUpdataVote = (article_id, voteChange) => {
     let { votes, ...article } = this.state.article;
@@ -29,7 +27,9 @@ class ArticleByID extends Component {
   };
 
   componentDidMount() {
-    this.setState({admin:this.props.location.state.admin})
+    if (this.props.location.state) {
+      this.setState({ admin: this.props.location.state.admin });
+    }
     getArticleByID(this.props.article_id)
       .then(({ data: article }) => {
         this.setState({ article: article.article, isLoading: false });
@@ -63,9 +63,6 @@ class ArticleByID extends Component {
     }
   }
   render() {
-
-
-    console.log(this.props.location.state.admin)
     if (this.state.error)
       return (
         <ErrorDisplay
@@ -82,7 +79,6 @@ class ArticleByID extends Component {
       author,
       body,
       votes,
-      comment_count,
       created_at,
     } = this.state.article;
     return (
@@ -99,7 +95,8 @@ class ArticleByID extends Component {
           changeUpdataVote={this.changeUpdataVote}
         ></Votes> :null}
         <ToggleComment>
-          <CommentByArticle
+          <CommentByArticle 
+            admin={this.state.admin}
             author={author}
             article_id={article_id}
             path="articles/:article_id"
