@@ -9,13 +9,13 @@ import GetAllUser from './Pages/GetAllUser';
 import Home from './Pages/Home';
 import ArticleByID from './Pages/ArticleByID';
 import ErrorDisplay from './Components/ErrorDisplay';
-import BackButton from './Components/BackButton';
+
 
 function App() {
   return (
     <div className="App">
       <Header></Header>
-      <BackButton/>
+  
       <Router>
         <Home path="/"></Home>
         <Topics path="/topics"></Topics>

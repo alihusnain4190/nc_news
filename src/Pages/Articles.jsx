@@ -88,10 +88,6 @@ class Articles extends Component {
     return (
       <div>
         <section>
-          <ShowUser
-            name={this.state.name}
-            avatar_url={this.state.avatar_url}
-          ></ShowUser>
           <SortBy handleChange={this.handleChange}></SortBy>
           <SearchArticleByID
             admin={this.state.admin}

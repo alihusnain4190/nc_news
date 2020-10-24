@@ -1,23 +1,156 @@
 .App {
   text-align: center;
 }
-.header{
+body {
+  box-sizing: border-box;
+}
+h1 {
+  color: #333333;
+}
+
+.header {
   width: 100%;
   height: 20vh;
-  background-color: #333333;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  background-color: #413075;
 }
-footer {
-  position: absolute;
-  bottom: 0;
+.header__logo {
+  color: whitesmoke;
+  margin-left: 1rem;
+}
+.header__logo:hover {
+  text-decoration: underline;
+  background-color: #413075;
+}
+.header__list {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  list-style: none;
+}
+.header__item {
+  padding: 0rem 1rem;
+}
+.header__link {
+  text-decoration: none;
+}
+/*home page css*/
+
+.container {
+  margin-top: 2rem;
+}
+.home-header {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.home__toggle {
+  margin-left: 2rem;
+}
+.main {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 1rem;
+}
+/*topics headr */
+.topics {
+  display: flex;
+  flex-direction: column;
+}
+/* topics table */
+table {
+  margin-top: 3rem;
+  border-collapse: collapse;
   width: 100%;
- }
- /*home page */
- .news{
-display: flex;
-justify-content: space-around;
-align-items: center;
- }
- .article{
-   border: 1px solid black;
-  margin: 10px;
-  }
+}
+th,
+td {
+  padding: 10px;
+}
+tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+th {
+  background-color: #413075;
+  color: whitesmoke;
+}
+.admin-toggle {
+  margin: 1rem;
+}
+/*articles */
+.articles {
+  max-width: 100%;
+  margin: 1rem;
+  border: 1px #333333 solid;
+  line-height: 0.2;
+}
+.article_title {
+  text-align: left;
+  font-size: large;
+}
+.article-desp {
+  display: flex;
+  justify-content: flex-start;
+  text-align: justify;
+}
+.article-comment {
+  display: flex;
+  justify-content: flex-start;
+  text-align: center;
+}
+.article_title,
+.article__topic,
+.article__author,
+.article__time,
+.article-comment__vote,
+.article-comment__comment {
+  margin-left: 5px;
+}
+.article__comment_icon {
+  text-align: center;
+  margin-top: 0.3rem;
+  margin-left: 12px;
+}
+.article__Link__comment {
+  display: flex;
+}
+/*single artile*/ 
+.article{
+  max-width: 100%;
+  margin: 1rem;
+  border: 1px #333333 solid;
+}
+.article__votes {
+  text-align: center;
+  margin-top: 0.3rem;
+  margin-left: 12px;
+}
+.article__body{
+  text-align: center;
+}
+.votes {
+  display: flex;
+}
+.article-comment__check-cirle {
+  margin-top: 12px;
+}
+.votes__thumbsup {
+  margin-top: 12px;
+  cursor: pointer;
+}
+
+.votes__thumbsdown {
+  margin-top: 12px;
+  cursor: pointer;
+}
+.footer {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: rgb(235, 195, 64);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}

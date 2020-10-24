@@ -5,12 +5,13 @@ import ErrorDisplay from "../Components/ErrorDisplay";
 import Votes from "../Components/Votes";
 import ToggleComment from "../Components/ToggleComment";
 import Loader from "../Components/Loader";
+import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 class ArticleByID extends Component {
   state = {
     article: {},
     isLoading: true,
     error: null,
-    admin:''
+    admin: "",
   };
   changeUpdataVote = (article_id, voteChange) => {
     let { votes, ...article } = this.state.article;
@@ -44,6 +45,7 @@ class ArticleByID extends Component {
         });
       });
   }
+
   componentDidUpdate(prevProps, prevState) {
     // this.setState({admin:this.props.location.state.admin})
     if (prevProps.article_id !== this.props.article_id) {
@@ -82,27 +84,35 @@ class ArticleByID extends Component {
       created_at,
     } = this.state.article;
     return (
-      <div>
-        <h1>title: {title}</h1>
-        <h3>topic: {topic}</h3>
-        <h3>author: {author}</h3>
-        <p>{body}</p>
-        <p>votes:{votes}</p>
-        <p>time: {created_at}</p>
-        {this.state.admin === 'jessjelly' ? <Votes
-          votes={votes}
-          article_id={article_id}
-          changeUpdataVote={this.changeUpdataVote}
-        ></Votes> :null}
-        <ToggleComment>
-          <CommentByArticle 
-            admin={this.state.admin}
-            author={author}
-            article_id={article_id}
-            path="articles/:article_id"
-          ></CommentByArticle>
-        </ToggleComment>
-      </div>
+      <section className="article" key={article_id}>
+        <h1 className="article_title"> {title}</h1>
+        <div className="article-desp">
+          <h3 className="article__topic"> {topic}</h3>
+          <h3 className="article__author">author: {author}</h3>
+          <p className="article__time">time: {created_at}</p>
+        </div>
+
+        <p className="article__body">{body}</p>
+        <div className="article-comment">
+          <CheckCircleIcon className="article-comment__check-cirle" />
+          <p className="article-comment__vote">votes:{votes}</p>
+          {this.state.admin === "jessjelly" ? (
+            <Votes
+              votes={votes}
+              article_id={article_id}
+              changeUpdataVote={this.changeUpdataVote}
+            ></Votes>
+          ) : null}
+          <ToggleComment>
+            <CommentByArticle
+              admin={this.state.admin}
+              author={author}
+              article_id={article_id}
+              path="articles/:article_id"
+            ></CommentByArticle>
+          </ToggleComment>
+        </div>
+      </section>
     );
   }
 }

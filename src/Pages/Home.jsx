@@ -1,7 +1,14 @@
 import { Link, navigate } from "@reach/router";
 import React, { Component } from "react";
 import AdimLogin from "../Components/AdimLogin";
+import ToggleComment from "../Components/ToggleComment";
+import { Button } from "@material-ui/core";
+
 class Home extends Component {
+  btn = {
+    backgroundColor: "#2E4372",
+    textDecoration: 'none'
+  };
   state = {
     admin: "",
     name: "",
@@ -13,30 +20,48 @@ class Home extends Component {
   };
   render() {
     return (
-      <main>
-        <p>News and article about Student</p>
-        <AdimLogin hadnleAdminSubmit={this.hadnleAdminSubmit}></AdimLogin>
-        <section className="news">
-          <div className="topics">
+      <main className="container">
+        <section className="home-header">
+          <h1 className="home__desh1">
+            you can See news and Article about student below
+          </h1>
+          <ToggleComment className="home__toggle">
+            <AdimLogin
+              admin={"admin"}
+              hadnleAdminSubmit={this.hadnleAdminSubmit}
+            ></AdimLogin>
+          </ToggleComment>
+        </section>
+        <section className="main">
+          <div className="home--main">
             <h1>Topics</h1>
             <p>Information about student topics</p>
-            <Link to="/topics">
-              <button>Topics</button>{" "}
+            <Link className="header__link" to="/topics">
+              <Button
+                style={this.btn}
+                variant="contained"
+                color="primary"
+                href="#contained-buttons"
+                onClick={this.hadleComment}
+              >
+                {" "}
+                Topics
+              </Button>{" "}
             </Link>
           </div>
           <div className="articles">
-            <h1>articles</h1>
+            <h1>Articles</h1>
             <p>Information about student articles</p>
-            <Link to="/articles">
-              <button>articles</button>{" "}
-            </Link>
-          </div>
-          <div className="comments">
-            {" "}
-            <h1>users</h1>
-            <p>Information about student comments</p>
-            <Link to="/users">
-              <button>users</button>{" "}
+            <Link to="/articles" className="header__link">
+              <Button
+                style={this.btn}
+                variant="contained"
+                color="primary"
+                href="#contained-buttons"
+                onClick={this.hadleComment}
+              >
+                Articles
+              </Button>{" "}
             </Link>
           </div>
         </section>
