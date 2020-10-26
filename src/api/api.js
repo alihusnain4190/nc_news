@@ -10,8 +10,7 @@ export const getTopics = async() => {
 export const getArticles = ( value,page) => {
     
         return instance.get('/articles', {
-            params:  {sort_by: value,p:page }
-        // params: { topic: slug, sort_by, order, p: page },
+            params:  {sort_by: value }
         });   
 }
 

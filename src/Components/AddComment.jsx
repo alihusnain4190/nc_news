@@ -8,7 +8,6 @@ class AddComment extends Component {
     this.setState({ comment: value });
   };
   render() {
-    console.log(this.state.comment)
     return (
       <section>
         <form

@@ -4,28 +4,49 @@ import Loader from "../Components/Loader";
 import AddComment from "./AddComment";
 import CommentVotes from "./CommentVotes";
 import DeleteComment from "./DeleteComment";
+import ErrorDisplay from '../Components/ErrorDisplay'
 class CommentByArticle extends Component {
   state = {
     comments: [],
     isLoading: true,
-    admin:''
+    admin: "",
+    error: null,
   };
   componentDidMount() {
-    this.setState({admin:this.props.admin})
+    this.setState({ admin: this.props.admin });
 
-    getCommentByArticleID(this.props.article_id).then(({ data: comment }) => {
-      this.setState({ comments: comment.comments, isLoading: false });
-    });
+    getCommentByArticleID(this.props.article_id)
+      .then(({ data: comment }) => {
+        this.setState({ comments: comment.comments, isLoading: false });
+      })
+      .catch(({ response }) => {
+        this.setState({
+          error: {
+            status: response.status,
+            messege: response.data.msg,
+          },
+          isLoading: false,
+        });
+      });
   }
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.article_id !== this.props.article_id)
-      getCommentByArticleID(this.props.article_id).then(({ data: comment }) => {
-        this.setState({ comments: comment.comments, isLoading: false });
-      });
+      getCommentByArticleID(this.props.article_id)
+        .then(({ data: comment }) => {
+          this.setState({ comments: comment.comments, isLoading: false });
+        })
+        .catch(({ response }) => {
+          this.setState({
+            error: {
+              status: response.status,
+              messege: response.data.msg,
+            },
+            isLoading: false,
+          });
+        });
   }
   //add comment using form
   upDateComment = (insertcomment) => {
-    console.log(insertcomment);
     this.setState((prevState) => {
       return {
         comments: [insertcomment, ...prevState.comments],
@@ -35,7 +56,6 @@ class CommentByArticle extends Component {
   };
   ///uppdate comment votes
   changeUpdataVote = (comment_id, voteChange) => {
-    
     this.setState((currentState) => {
       const commentsCopy = currentState.comments.map((comment) => {
         const commentCopy = { ...comment };
@@ -44,7 +64,7 @@ class CommentByArticle extends Component {
         }
         return commentCopy;
       });
-      return {comments:commentsCopy};
+      return { comments: commentsCopy };
     });
   };
 
@@ -56,26 +76,36 @@ class CommentByArticle extends Component {
       });
       return { comments: filteredComments };
     });
-  }
+  };
   render() {
-    if (this.state.isLoading) return <Loader></Loader>;
-console.log(this.props.admin)
+    if (this.state.error)
     return (
-      <div>
+      <ErrorDisplay
+        msg={this.state.error.messege}
+        status={this.state.error.status}
+      ></ErrorDisplay>
+    );
+    if (this.state.isLoading) return <Loader></Loader>;
+
+    return (
+      <div className="comments">
         {this.state.comments.map(({ comment_id, body, votes }) => {
           return (
             <div key={comment_id}>
               {body}
               <p>votes: {votes}</p>
-              {this.state.admin === 'jessjelly' ?
+              {this.state.admin === "jessjelly" ? (
                 <CommentVotes
                   changeUpdataVote={this.changeUpdataVote}
                   comment_id={comment_id}
-                ></CommentVotes>:null}
-        {this.state.admin === 'jessjelly' ?
-              <DeleteComment showCommentAfterDelete={this.showCommentAfterDelete} comment_id={comment_id}></DeleteComment>
-       
-              :null}
+                ></CommentVotes>
+              ) : null}
+              {this.state.admin === "jessjelly" ? (
+                <DeleteComment
+                  showCommentAfterDelete={this.showCommentAfterDelete}
+                  comment_id={comment_id}
+                ></DeleteComment>
+              ) : null}
             </div>
           );
         })}

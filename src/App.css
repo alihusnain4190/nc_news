@@ -116,8 +116,8 @@ th {
 .article__Link__comment {
   display: flex;
 }
-/*single artile*/ 
-.article{
+/*single artile*/
+.article {
   max-width: 100%;
   margin: 1rem;
   border: 1px #333333 solid;
@@ -127,7 +127,7 @@ th {
   margin-top: 0.3rem;
   margin-left: 12px;
 }
-.article__body{
+.article__body {
   text-align: center;
 }
 .votes {
@@ -146,11 +146,11 @@ th {
   cursor: pointer;
 }
 .footer {
-  margin-top: 1rem;
-  padding: 1rem;
-  background-color: rgb(235, 195, 64);
   position: fixed;
+  padding: 10px 10px 0px 10px;
   bottom: 0;
-  left: 0;
   width: 100%;
+  /* Height of the footer*/
+  height: 40px;
+  background: grey;
 }
