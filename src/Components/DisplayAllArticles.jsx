@@ -16,8 +16,8 @@ const DisplayAllArticles = ({ articles, admin }) => {
       return (
         <section className="articles" key={article_id}>
           {/* pass url and user value from state */}
-          <Link to={`/articles/${article_id}`} state={{ admin: admin }}>
-            <h1 className="article_title">title: {title}</h1>
+          <Link className="article-title-link" to={`/articles/${article_id}`} state={{ admin: admin }}>
+            <h3 className="article_title">title: {title}</h3>
           </Link>
           <div className="article-desp">
             <h2 className="article__topic">{topic}</h2>

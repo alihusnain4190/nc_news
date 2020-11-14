@@ -94,8 +94,10 @@ class ArticleByID extends Component {
 
         <p className="article__body">{body}</p>
         <div className="article-comment">
-          <CheckCircleIcon className="article-comment__check-cirle" />
-          <p className="article-comment__vote">votes:{votes}</p>
+          <div className="article-comment-wraper">
+            <CheckCircleIcon className="article-comment__check-cirle" />
+            <p className="article-comment__vote">votes:{votes}</p>
+          </div>
           {this.state.admin === "jessjelly" ? (
             <Votes
               votes={votes}
@@ -103,6 +105,7 @@ class ArticleByID extends Component {
               changeUpdataVote={this.changeUpdataVote}
             ></Votes>
           ) : null}
+
           <ToggleComment>
             <CommentByArticle
               admin={this.state.admin}

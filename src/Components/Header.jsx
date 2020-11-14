@@ -10,7 +10,7 @@ const Header = () => {
     <header className="header">
       <h1 className="header__logo">
         <Link className="header__logo header__link" to="/">
-          {" "}
+       
           Student News
         </Link>
       </h1>

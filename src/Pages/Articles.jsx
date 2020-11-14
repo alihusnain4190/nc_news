@@ -87,14 +87,15 @@ class Articles extends Component {
 
     return (
       <div>
-        <section>
+        <section className="article-wrapper">
+          <div className="artilce-sort">
           <SortBy handleChange={this.handleChange}></SortBy>
           <SearchArticleByID
             admin={this.state.admin}
             handleSearch={this.handleSearch}
           >
-            {" "}
           </SearchArticleByID>
+          </div>
           <DisplayAllArticles articles={articles}  admin={this.state.admin}></DisplayAllArticles>
         </section>
       </div>

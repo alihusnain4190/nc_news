@@ -7,7 +7,7 @@ import { Button } from "@material-ui/core";
 class Home extends Component {
   btn = {
     backgroundColor: "#2E4372",
-    textDecoration: 'none'
+    textDecoration: "none",
   };
   state = {
     admin: "",
@@ -34,35 +34,41 @@ class Home extends Component {
         </section>
         <section className="main">
           <div className="home--main">
-            <h1>Topics</h1>
-            <p>Information about student topics</p>
-            <Link className="header__link" to="/topics">
-              <Button
-                style={this.btn}
-                variant="contained"
-                color="primary"
-                href="#contained-buttons"
-                onClick={this.hadleComment}
-              >
-                {" "}
-                Topics
-              </Button>{" "}
-            </Link>
+            <div>
+              <h1>Topics</h1>
+              <p>Information about student topics</p>
+              <Link className="header__link" to="/topics">
+                <Button
+                  className="home-button"
+                  style={this.btn}
+                  variant="contained"
+                  color="primary"
+                  href="#contained-buttons"
+                  onClick={this.hadleComment}
+                >
+                  Topics
+                </Button>{" "}
+              </Link>
+            </div>
           </div>
-          <div className="articles">
-            <h1>Articles</h1>
-            <p>Information about student articles</p>
-            <Link to="/articles" className="header__link">
-              <Button
-                style={this.btn}
-                variant="contained"
-                color="primary"
-                href="#contained-buttons"
-                onClick={this.hadleComment}
-              >
-                Articles
-              </Button>{" "}
-            </Link>
+          <div className="articles-home">
+            <div>
+              <h1>Articles</h1>
+              <p>Information about student articles</p>
+
+              <Link to="/articles" className="header__link">
+                <Button
+                  className="home-button"
+                  style={this.btn}
+                  variant="contained"
+                  color="primary"
+                  href="#contained-buttons"
+                  onClick={this.hadleComment}
+                >
+                  Articles
+                </Button>
+              </Link>
+            </div>
           </div>
         </section>
       </main>

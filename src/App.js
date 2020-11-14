@@ -13,9 +13,10 @@ import ErrorDisplay from './Components/ErrorDisplay';
 
 function App() {
   return (
-    <div className="App">
-      <Header></Header>
+    <div class="app-container">
   
+      <Header></Header>
+  <main>
       <Router>
         <Home path="/"></Home>
         <Topics path="/topics"></Topics>
@@ -24,6 +25,7 @@ function App() {
           <GetAllUser path="/users"></GetAllUser>
         <ErrorDisplay default status={400} messege="page does not exist" path="/*"></ErrorDisplay>
        </Router>
+       </main>
       <Footer></Footer>
     </div>
   );

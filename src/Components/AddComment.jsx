@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { addCommentByArticleID } from "../api/api";
+import { Button } from "@material-ui/core";
+
 class AddComment extends Component {
   state = { comment: "" };
   handleChange = (e) => {
@@ -9,7 +11,7 @@ class AddComment extends Component {
   };
   render() {
     return (
-      <section>
+      <section className="comment-section">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -18,13 +20,16 @@ class AddComment extends Component {
               this.state.comment,
               this.props.author
             ).then(({ data: comment }) => {
-             
               this.props.upDateComment(comment.comment);
-            })
+            });
           }}
         >
-          <textarea onChange={this.handleChange}></textarea>
-          <button>addComment</button>
+          <textarea
+            value="write something about post"
+            class="textinput"
+            onChange={this.handleChange}
+          ></textarea>
+          <button class="comment-btn">Add-Comment</button>
         </form>
       </section>
     );

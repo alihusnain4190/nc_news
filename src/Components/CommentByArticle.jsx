@@ -4,7 +4,7 @@ import Loader from "../Components/Loader";
 import AddComment from "./AddComment";
 import CommentVotes from "./CommentVotes";
 import DeleteComment from "./DeleteComment";
-import ErrorDisplay from '../Components/ErrorDisplay'
+import ErrorDisplay from "../Components/ErrorDisplay";
 class CommentByArticle extends Component {
   state = {
     comments: [],
@@ -79,21 +79,27 @@ class CommentByArticle extends Component {
   };
   render() {
     if (this.state.error)
-    return (
-      <ErrorDisplay
-        msg={this.state.error.messege}
-        status={this.state.error.status}
-      ></ErrorDisplay>
-    );
+      return (
+        <ErrorDisplay
+          msg={this.state.error.messege}
+          status={this.state.error.status}
+        ></ErrorDisplay>
+      );
     if (this.state.isLoading) return <Loader></Loader>;
 
     return (
-      <div className="comments">
+      <>
+        <AddComment
+          upDateComment={this.upDateComment}
+          article_id={this.props.article_id}
+          author={this.props.author}
+        ></AddComment>
         {this.state.comments.map(({ comment_id, body, votes }) => {
           return (
-            <div key={comment_id}>
-              {body}
-              <p>votes: {votes}</p>
+            <div key={comment_id} className="comment-toggle-wrapper">
+              <p className="comment-p">{body}</p>
+
+              <p className="comment-p">votes: {votes}</p>
               {this.state.admin === "jessjelly" ? (
                 <CommentVotes
                   changeUpdataVote={this.changeUpdataVote}
@@ -109,12 +115,7 @@ class CommentByArticle extends Component {
             </div>
           );
         })}
-        <AddComment
-          upDateComment={this.upDateComment}
-          article_id={this.props.article_id}
-          author={this.props.author}
-        ></AddComment>
-      </div>
+      </>
     );
   }
 }

@@ -45,9 +45,8 @@ class AdimLogin extends Component {
           }}
         >
           <TextField
-         
             id="outlined-basic"
-            label="userName"
+            label="admin name is jessjelly"
             variant="outlined"
             onChange={this.hadnleAdmin}
             type="text"

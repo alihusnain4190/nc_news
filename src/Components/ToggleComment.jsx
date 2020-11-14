@@ -37,7 +37,7 @@ class ToggleComment extends Component {
         </div>
       );
     return (
-      <div className="comment-toggle">
+      <div>
         <Button
           style={this.btn}
           variant="contained"
